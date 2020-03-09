@@ -1,0 +1,63 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   spacing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seiseo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/27 17:14:15 by seiseo            #+#    #+#             */
+/*   Updated: 2020/02/27 18:48:29 by seiseo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+int calc_width(int width, int preci, int nbchar)
+{
+	int retour;
+
+	retour = 0;
+	while (width > preci && width > nbchar + 1)
+	{
+		retour++;
+		width--;
+	}
+	return (retour);
+}
+
+int calc_preci(int width, int preci, int nbchar)
+{
+	int retour;
+
+	retour = 0;
+	while (preci > nbchar + width)
+	{
+		retour++;
+		preci--;
+	}
+	return (retour);
+}
+
+void spacing(int nbchar, oneforall *lst)
+{
+	int size;
+	int width;
+	int preci;
+
+	if (nbchar >= lst->taille && nbchar >= lst->preci)
+		return;
+	size = nbchar;
+	width = calc_width(lst->taille, lst->preci, nbchar);
+	preci = calc_preci(width, lst->preci, nbchar);
+	printf("width : %d\npreci : %d\n nbchar : %d\n", width, preci, nbchar);
+	while (width)
+	{
+		lst->buf[lst->buf_i++] = lst->zero;
+		width--;
+	}
+	while (preci)
+	{
+		lst->buf[lst->buf_i++] = '0';
+		preci--;
+	}
+}

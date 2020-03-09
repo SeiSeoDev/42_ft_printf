@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:06:52 by dasanter          #+#    #+#             */
-/*   Updated: 2020/02/26 15:21:05 by dasanter         ###   ########.fr       */
+/*   Updated: 2020/02/27 19:48:04 by seiseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdarg.h>
@@ -118,10 +118,10 @@ int main()
 {
 //	ft_printf("|%X|\n", -42);
 //
-	printf("le vrai %d\n", -13 + printf("le vrai : |%10d|\n", -42));
-	printf("le mien %d\n", -13 + ft_printf("le mien : |%10d|\n", -42));
-	ft_printf("{%10d}\n", 42);
-	printf("{%10d}\n", 42);
+//	printf("le vrai %d\n", -13 + printf("le vrai : |%10d|\n", -42));
+//	printf("le mien %d\n", -13 + ft_printf("le mien : |%10d|\n", -42));
+	ft_printf("le mien {%10.8d}\n", 42);
+	printf("le vrai {%10.8d}\n", 42);
 	//  ft_printf("%X\n", 4294967296);
 //  printf("%X\n", 4294967296);
 //	printf("|%X|\n", -42);

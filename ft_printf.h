@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 15:07:52 by dasanter          #+#    #+#             */
-/*   Updated: 2020/02/19 15:35:36 by dasanter         ###   ########.fr       */
+/*   Updated: 2020/02/27 19:23:56 by seiseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,3 +51,4 @@ void resetlst(oneforall *lst);
 void hex_convert(unsigned long long nb, int base, oneforall *lst);
 int puthexmin(oneforall *lst, va_list ap);
 int puthexmaj(oneforall *lst, va_list ap);
+void spacing(int nbchar, oneforall *lst, int minus);

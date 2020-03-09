@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 15:18:06 by dasanter          #+#    #+#             */
-/*   Updated: 2020/02/26 15:17:27 by dasanter         ###   ########.fr       */
+/*   Updated: 2020/02/27 19:51:34 by seiseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,15 @@ void hex_convert(unsigned long long int nb, int base, oneforall *lst)
 		table = "0123456789ABCDEF";
 		base -= 10;
 	}
+	if (nb == 0)
+		lst->buf[lst->buf_i++] = '0';
 	while (tmp > 0)
 	{
 		i++;
 		tmp /= base;
 	}
-	if (i == 0)
-		lst->buf[lst->buf_i++] = '0';
+//	if (i == 0)
+//		lst->buf[lst->buf_i++] = '0';
 	xchar_buf(lst, i);
 	while (nb > 0)
 	{
@@ -95,74 +97,51 @@ int puthexmin(oneforall *lst, va_list ap)
 	return (1);
 }
 
+int getnbchar(int nb)
+{
+	int i;
+
+	if (nb == -2147483648)
+		return (10);
+	i = 0;
+	if (nb == 0 )
+		return (1);
+	while (nb > 0)
+	{
+		i++;
+		nb /= 10;
+	}
+	return (i);
+}
+
 int putint(oneforall *lst, va_list ap)
 {
-	long long int nb;
-	int i;
-	int tmp;
+	int nb;
+	int nbchar;
 	int minus;
 
-	minus = 0;
-	nb = va_arg(ap, long long int);
-	i = 0;
-	tmp = nb;
-	if (nb == 0)
-		i++;
-	if ((int)nb < 0)
+	nb =  va_arg(ap, int);
+	if (nb < 0)
 	{
-		if (nb < 2147483648)
-			nb *= -1;
-		else
-			nb = (int)nb * -1;
-		i++;
 		minus = 1;
-		tmp = nb;
+		nb *= -1;
 	}
-	if (lst->zero == '0' && minus)
-	{
-		minus--;
-		ft_putchar(lst, '-');
-	}
-	if (lst->space && !minus && !lst->plus)
-	{
-		i++;
-		ft_putchar(lst, ' ');
-	}
-	if (lst->moins)
-	{
-		if (minus)
-			ft_putchar(lst, '-');
-		hex_convert(nb, 10, lst);
-	}
-	if (lst->plus == 1 && !minus)
-		ft_putchar(lst, '+');
-	while (tmp > 0)
-	{
-		i++;
-		tmp /= 10;
-		//printf("i : %d\n", i);
-	}
-//	printf("i : %d\n", i);
-	if (i > lst->preci)
-		lst->preci = i;
-	//printf("taille : %d\n", lst->taille);
-	while (lst->taille > lst->preci)
-	{
-		lst->buf[lst->buf_i++] = lst->zero;
-		lst->taille--;
-	}
-	//printf("preci : %d\n", lst->preci);
-	while(i + minus < lst->preci)
-	{
-		lst->buf[lst->buf_i++] = '0';
-		i++;
-	}
-//	printf("nombre convert : %d\n", nb);
+	else
+		minus = 0;
+	nbchar = getnbchar(nb);
+	
 	if (!lst->moins)
-	{
-		if (minus)
-			ft_putchar(lst, '-');
+		spacing(nbchar, lst, minus);
+
+	if (lst->plus && !minus)
+		ft_putchar(lst, '+');
+	else if (lst->space && !minus)
+		ft_putchar(lst, ' ');
+	if (nb == -2147483648)
+		hex_convert(2147483648, 10, lst);
+	else
 		hex_convert(nb, 10, lst);
-	}
+	if (lst->moins)
+		spacing(nbchar, lst, minus);
 	return (1);
 }

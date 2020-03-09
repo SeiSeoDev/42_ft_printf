@@ -7,7 +7,8 @@ SRC = flags.c	\
 	  print_nbr.c	\
 	  width.c		\
 	  print_po.c	\
-	  printf.c
+	  printf.c		\
+	  spacing.c
 
 INC = ft_printf.h
 AR = ar -rc

@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 18:46:59 by dasanter          #+#    #+#             */
-/*   Updated: 2020/02/17 17:33:48 by dasanter         ###   ########.fr       */
+/*   Updated: 2020/02/27 17:38:05 by seiseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,13 @@ int heytoile(oneforall *lst, va_list ap)
 	if (lst->form[lst->pos - 1] == '.')
 		lst->preci = nb;
 	else
+	{
+		if (nb < 0)
+		{
+			lst->moins = 1;
+			nb *= -1;
+		}
 		lst->taille = nb;
+	}
 	return (0);
 }
