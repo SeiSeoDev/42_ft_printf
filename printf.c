@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:06:52 by dasanter          #+#    #+#             */
-/*   Updated: 2021/01/05 16:43:20 by seiseo           ###   ########.fr       */
+/*   Updated: 2021/01/06 11:50:48 by dasanter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdarg.h>
@@ -29,6 +29,7 @@ int pourc (oneforall *lst, va_list ap, int (*p[])(oneforall *lst, va_list ap))
 
 void initlst(oneforall *lst, char *form)
 {
+	lst->buf_i = 0;
 	lst->pos = 0;
 	lst->form = form;
 	lst->diese = 0;
@@ -147,16 +148,16 @@ int	ft_printf(char *form, ...)
 	va_end(ap);
 	return (lst->ret_value);
 }
-
+/*
 int main()
 {
 //	ft_printf("|%X|\n", -42);
 //
 //	printf("le vrai %d\n", -13 + printf("le vrai : |%10d|\n", -42));
 //	printf("le mien %d\n", -13 + ft_printf("le mien : |%10d|\n", -42));
-	ft_printf("%c\n", 's');
+	ft_printf("|%5%|\n");
 	//printf("%d\n", ft_printf("%-9c\n", 's'));
-	printf("%-9c\n", 's');
+	//printf("|%5%|\n");
 	//printf("%d\n", printf("%-9c\n", 's'));
 //printf("valeur de retour : %d\n", ft_printf("%%"));
 	//  ft_printf("%X\n", 4294967296);
@@ -174,4 +175,4 @@ int main()
 //	printf("%5.2s is a string\n", "");
 //	ft_printf("le mien |%-.2s is a string|\n", "this");
 //	printf("le vrai |%-.2s is a string|\n", "this");
-}
+}*/

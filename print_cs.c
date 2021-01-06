@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:50:26 by dasanter          #+#    #+#             */
-/*   Updated: 2021/01/05 16:23:49 by seiseo           ###   ########.fr       */
+/*   Updated: 2021/01/06 11:32:19 by dasanter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdarg.h>
@@ -94,7 +94,7 @@ void ft_putchar(oneforall *lst, char c)
 		new_buf(lst);
 		lst->buf_i = 0;
 	}
-	printf("%i\n", lst->buf_i);
+//	printf("%i\n", lst->buf_i);
 	lst->buf[lst->buf_i] = c;
 	lst->buf_i++;
 }

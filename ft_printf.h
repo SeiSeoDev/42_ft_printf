@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 15:07:52 by dasanter          #+#    #+#             */
-/*   Updated: 2021/01/05 16:27:49 by seiseo           ###   ########.fr       */
+/*   Updated: 2021/01/06 10:15:33 by dasanter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 10
 typedef struct		s_list
 {
 	int pos;
 	char *form;
-	char *buf;
+	char buf[BUFFER_SIZE];
 	int buf_i;
 	int ret_value;
 	int diese;
