@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 15:07:52 by dasanter          #+#    #+#             */
-/*   Updated: 2020/02/27 19:23:56 by seiseo           ###   ########.fr       */
+/*   Updated: 2021/01/05 16:27:49 by seiseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct		s_list
 {
 	int pos;
 	char *form;
-	char buf[BUFFER_SIZE];
+	char *buf;
 	int buf_i;
 	int ret_value;
 	int diese;
@@ -29,6 +29,7 @@ typedef struct		s_list
 	int space;
 	int taille;
 	int preci;
+	char nul[7];
 }					oneforall;
 
 int	putstr(oneforall *lst, va_list ap);
