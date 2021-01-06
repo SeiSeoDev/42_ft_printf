@@ -6,7 +6,7 @@
 /*   By: seiseo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:14:15 by seiseo            #+#    #+#             */
-/*   Updated: 2020/02/27 19:47:11 by seiseo           ###   ########.fr       */
+/*   Updated: 2020/10/07 18:26:56 by seiseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ void spacing(int nbchar, oneforall *lst, int minus)
 	int size;
 	int width;
 	int preci;
-
+	
 	if (minus)
 		nbchar++;
-	if (nbchar >= lst->taille && nbchar >= lst->preci)
-		return;
+
+	//if (nbchar >= lst->taille && nbchar >= lst->preci)
+	//	return;
 	size = nbchar;
 	width = calc_width(lst->taille, lst->preci, nbchar, minus);
 	preci = calc_preci(lst->preci, nbchar, minus);

@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 18:46:59 by dasanter          #+#    #+#             */
-/*   Updated: 2020/02/27 17:38:05 by seiseo           ###   ########.fr       */
+/*   Updated: 2020/10/07 17:54:26 by seiseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ int width(oneforall *lst, va_list ap)
 int zero(oneforall *lst, va_list ap)
 {
 	(void)ap;
-	lst->zero = '0';
+	if (!lst->moins)
+		lst->zero = '0';
+	else
+		lst->zero = ' ';
 	return (0);
 }
 

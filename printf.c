@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:06:52 by dasanter          #+#    #+#             */
-/*   Updated: 2020/02/27 19:48:04 by seiseo           ###   ########.fr       */
+/*   Updated: 2021/01/05 16:43:20 by seiseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdarg.h>
@@ -38,6 +38,13 @@ void initlst(oneforall *lst, char *form)
 	lst->taille = 0;
 	lst->preci = -1;
 	lst->ret_value = 0;
+	lst->nul[0] = '(';
+	lst->nul[1] = 'n';
+	lst->nul[2] = 'u';
+	lst->nul[3] = 'l';
+	lst->nul[4] = 'l';
+	lst->nul[5] = ')';
+	lst->nul[6] = 0;
 }
 
 void resetlst(oneforall *lst)
@@ -65,10 +72,37 @@ int skip(oneforall *lst, va_list ap)
 	(void)ap;
 	return (0);
 }
+
+int checkform(char *form)
+{
+	int pos;
+	char x;
+	
+	pos = 0;
+	while (form[pos])
+	{
+		if (form[pos] == '%')
+		{
+			pos++;
+			x = form[pos];
+			while (x != 'd' && x != 'i' && x != 's'&& x != 'c' && x != 'p' && x != '%' && x != 'x' && x != 'X' && x)
+				x = form[pos++];
+			if (x == 0)
+				return (0);
+		}
+		pos++;
+	}
+	
+	return (1);
+	}
+
 int	ft_printf(char *form, ...)
 {
 	int (*p[128]) (oneforall *lst, va_list ap);
 	va_list ap;
+
+	if (checkform(form) == 0)
+		return (0);
 	oneforall *lst;
 
 	if (!(lst = malloc(sizeof(oneforall))))
@@ -113,15 +147,18 @@ int	ft_printf(char *form, ...)
 	va_end(ap);
 	return (lst->ret_value);
 }
-/*
+
 int main()
 {
 //	ft_printf("|%X|\n", -42);
 //
 //	printf("le vrai %d\n", -13 + printf("le vrai : |%10d|\n", -42));
 //	printf("le mien %d\n", -13 + ft_printf("le mien : |%10d|\n", -42));
-	ft_printf("le mien {%10.8d}\n", 42);
-	printf("le vrai {%10.8d}\n", 42);
+	ft_printf("%c\n", 's');
+	//printf("%d\n", ft_printf("%-9c\n", 's'));
+	printf("%-9c\n", 's');
+	//printf("%d\n", printf("%-9c\n", 's'));
+//printf("valeur de retour : %d\n", ft_printf("%%"));
 	//  ft_printf("%X\n", 4294967296);
 //  printf("%X\n", 4294967296);
 //	printf("|%X|\n", -42);
@@ -137,4 +174,4 @@ int main()
 //	printf("%5.2s is a string\n", "");
 //	ft_printf("le mien |%-.2s is a string|\n", "this");
 //	printf("le vrai |%-.2s is a string|\n", "this");
-}*/
+}

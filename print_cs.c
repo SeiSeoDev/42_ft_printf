@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:50:26 by dasanter          #+#    #+#             */
-/*   Updated: 2020/02/17 15:26:13 by dasanter         ###   ########.fr       */
+/*   Updated: 2021/01/05 16:23:49 by seiseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdarg.h>
@@ -47,6 +47,8 @@ int	putstr(oneforall *lst, va_list ap)
 	i = -1;
 	size = 0;
 	str = va_arg(ap, char *);
+	if (!str)
+		str = lst->nul;
 	while(str[size])
 		size++;
 	if (lst->preci > size)
@@ -92,6 +94,7 @@ void ft_putchar(oneforall *lst, char c)
 		new_buf(lst);
 		lst->buf_i = 0;
 	}
+	printf("%i\n", lst->buf_i);
 	lst->buf[lst->buf_i] = c;
 	lst->buf_i++;
 }
