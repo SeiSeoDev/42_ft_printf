@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:50:26 by dasanter          #+#    #+#             */
-/*   Updated: 2021/01/06 11:32:19 by dasanter         ###   ########.fr       */
+/*   Updated: 2021/01/06 12:28:53 by dasanter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdarg.h>
@@ -30,11 +30,11 @@ int char_buf(oneforall *lst, va_list ap)
 	i = 0;
 	c = va_arg(ap, int);
 	if (lst->moins)
-		ft_putchar(lst, c);
+		ft_putbuf(lst, c);
 	while (i++ < lst->taille - 1)
-		ft_putchar(lst, lst->zero);
+		ft_putbuf(lst, lst->zero);
 	if (!lst->moins)
-		ft_putchar(lst, c);
+		ft_putbuf(lst, c);
 	return 1;
 }
 
@@ -59,18 +59,18 @@ int	putstr(oneforall *lst, va_list ap)
 	//printf("preci  : %d\n", lst->preci);
 	if (lst->moins)
 		while(str[++i] && i < lst->preci)
-			ft_putchar(lst, str[i]);
+			ft_putbuf(lst, str[i]);
 	while (lst->taille-- > lst->preci)
 	{
 	//printf("%d\n", lst->taille);
 //	printf("taille : %d\n", lst->taille);
 //	printf("preci  : %d\n", lst->preci);
-		ft_putchar(lst, ' ');
+		ft_putbuf(lst, ' ');
 	//	printf("dwqdqw\n");
 	}
 	if (!lst->moins)
 		while(str[++i] && lst->preci--)
-			ft_putchar(lst, str[i]);
+			ft_putbuf(lst, str[i]);
 	return 1;
 }
 
@@ -86,7 +86,7 @@ void buf_print(char *buf, oneforall *lst)
 		lst->buf[i++] = 0;
 }
 
-void ft_putchar(oneforall *lst, char c)
+void ft_putbuf(oneforall *lst, char c)
 {
 	if (lst->buf_i >= BUFFER_SIZE - 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 15:07:52 by dasanter          #+#    #+#             */
-/*   Updated: 2021/01/06 10:15:33 by dasanter         ###   ########.fr       */
+/*   Updated: 2021/01/08 15:11:03 by dasanter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ typedef struct		s_list
 int	putstr(oneforall *lst, va_list ap);
 int	print_nbr(oneforall *lst, va_list ap);
 void buf_print(char *s, oneforall *lst);
-void ft_putchar(oneforall *lst, char c);
+void ft_putbuf(oneforall *lst, char c);
 void new_buf(oneforall *lst);
+int calc_width(int width, int preci, int nbchar, int minus);
+int calc_preci(int preci, int nbchar,int minus);
 int char_buf(oneforall *lst, va_list ap);
 int putint(oneforall *lst, va_list ap);
 int putunsi(oneforall *lst, va_list ap);
@@ -52,4 +54,4 @@ void resetlst(oneforall *lst);
 void hex_convert(unsigned long long nb, int base, oneforall *lst);
 int puthexmin(oneforall *lst, va_list ap);
 int puthexmaj(oneforall *lst, va_list ap);
-void spacing(int nbchar, oneforall *lst, int minus);
+void spac_int(int nbchar, oneforall *lst, int minus);

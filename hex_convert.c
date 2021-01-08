@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 15:18:06 by dasanter          #+#    #+#             */
-/*   Updated: 2020/02/27 19:51:34 by seiseo           ###   ########.fr       */
+/*   Updated: 2021/01/08 11:40:34 by dasanter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,29 +119,69 @@ int putint(oneforall *lst, va_list ap)
 	int nb;
 	int nbchar;
 	int minus;
+	int preci;
+	int largeur;
+	unsigned long long int u;
 
 	nb =  va_arg(ap, int);
 	if (nb < 0)
 	{
+		u = -1 * nb;
 		minus = 1;
-		nb *= -1;
 	}
 	else
+	{
 		minus = 0;
-	nbchar = getnbchar(nb);
-	
-	if (!lst->moins)
-		spacing(nbchar, lst, minus);
-
-	if (lst->plus && !minus)
-		ft_putchar(lst, '+');
-	else if (lst->space && !minus)
-		ft_putchar(lst, ' ');
-	if (nb == -2147483648)
-		hex_convert(2147483648, 10, lst);
-	else
-		hex_convert(nb, 10, lst);
+		u = nb;
+	}
+	nbchar = getnbchar((int)u);
+	preci = calc_preci(lst->preci, nbchar, minus);
+	largeur = calc_width(lst->taille, lst->preci, nbchar, minus);
+/*	printf("%d\n", nbchar);
+	printf("%d\n", largeur);
+*/
 	if (lst->moins)
-		spacing(nbchar, lst, minus);
+	{
+		if (lst->plus && !minus)
+		{
+			ft_putbuf(lst, '+');
+			if (largeur > 0)
+				largeur--;
+		}
+		else if (minus)
+			ft_putbuf(lst, '-');
+		while (preci--)
+			ft_putbuf(lst, '0');
+		if (nb == -2147483648)
+			hex_convert(2147483648, 10, lst);
+		else
+			hex_convert(u, 10, lst);
+		while (largeur--)
+			ft_putbuf(lst, ' ');
+	}
+	else 
+	{
+		if (lst->plus && !minus)
+			if (largeur > 0)
+				largeur--;
+		while(largeur && lst->zero == ' ')
+		{
+			ft_putbuf(lst, lst->zero);
+			largeur--;
+		}
+		if (lst->plus && !minus)
+			ft_putbuf(lst, '+');
+		else if (minus)
+			ft_putbuf(lst, '-');
+		while(largeur--)
+			ft_putbuf(lst, lst->zero);
+		while (preci--)
+			ft_putbuf(lst, '0');
+		if (nb == -2147483648)
+			hex_convert(2147483648, 10, lst);
+		else
+			hex_convert(u, 10, lst);
+
+	}
 	return (1);
 }

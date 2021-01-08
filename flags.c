@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 18:30:01 by dasanter          #+#    #+#             */
-/*   Updated: 2020/10/08 15:27:28 by seiseo           ###   ########.fr       */
+/*   Updated: 2021/01/07 18:09:07 by dasanter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ int pourcent(oneforall *lst, va_list ap)
 	}*/
 	i = 1;
 	if (lst->moins)
-		ft_putchar(lst, '%');
+		ft_putbuf(lst, '%');
 	
 	while (i < lst->taille)
 	{
-		ft_putchar(lst, lst->zero);
+		ft_putbuf(lst, lst->zero);
 		i++;
 	}
 	if (!lst->moins)
-		ft_putchar(lst, '%');
+		ft_putbuf(lst, '%');
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: seiseo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:14:15 by seiseo            #+#    #+#             */
-/*   Updated: 2020/10/07 18:26:56 by seiseo           ###   ########.fr       */
+/*   Updated: 2021/01/08 15:10:56 by dasanter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,43 @@ int calc_width(int width, int preci, int nbchar, int minus)
 	int retour;
 
 	retour = 0;
-	while (width > preci + minus && width > nbchar)
+	if (minus)
 	{
-		retour++;
-		width--;
+		while (width >= preci + minus && width > nbchar)
+		{
+			retour++;
+			width--;
+		}
 	}
+	else
+	{
+		while (width > preci + minus && width > nbchar)
+		{
+			retour++;
+			width--;
+		}
+	}
+
+	if (minus && retour > 0)
+	   retour--;
 	return (retour);
 }
 
 int calc_preci(int preci, int nbchar, int minus)
 {
 	int retour;
-
+	(void)minus;
 	retour = 0;
-	while (preci > nbchar - minus)
+	while (preci > nbchar)
 	{
 		retour++;
 		preci--;
 	}
+
 	return (retour);
 }
 
-void spacing(int nbchar, oneforall *lst, int minus)
+void spac_int(int nbchar, oneforall *lst, int minus)
 {
 	int size;
 	int width;
@@ -52,8 +67,8 @@ void spacing(int nbchar, oneforall *lst, int minus)
 	size = nbchar;
 	width = calc_width(lst->taille, lst->preci, nbchar, minus);
 	preci = calc_preci(lst->preci, nbchar, minus);
-//printf("width : %d\npreci : %d\n nbchar : %d\n", width, preci, nbchar);
-	while (width)
+//printf("width : %d\npreci : %d\n nbchar : %d\n", width, preci, nbchar);	
+	while (width )
 	{
 		lst->buf[lst->buf_i++] = lst->zero;
 		width--;
