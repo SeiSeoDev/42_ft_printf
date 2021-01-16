@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 15:07:52 by dasanter          #+#    #+#             */
-/*   Updated: 2021/01/08 15:11:03 by dasanter         ###   ########.fr       */
+/*   Updated: 2021/01/16 15:32:50 by dasanter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_list
 	int moins;
 	int space;
 	int taille;
+	int non_preci;
 	int preci;
 	char nul[7];
 }					oneforall;
@@ -41,7 +42,7 @@ int calc_width(int width, int preci, int nbchar, int minus);
 int calc_preci(int preci, int nbchar,int minus);
 int char_buf(oneforall *lst, va_list ap);
 int putint(oneforall *lst, va_list ap);
-int putunsi(oneforall *lst, va_list ap);
+int put_unsigned(oneforall *lst, va_list ap);
 int print_po(oneforall *lst, va_list ap);
 int width(oneforall *lst, va_list ap);
 int preci(oneforall *lst, va_list ap);

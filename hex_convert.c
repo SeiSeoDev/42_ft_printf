@@ -6,11 +6,12 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 15:18:06 by dasanter          #+#    #+#             */
-/*   Updated: 2021/01/08 11:40:34 by dasanter         ###   ########.fr       */
+/*   Updated: 2021/01/16 14:41:19 by dasanter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
 void xchar_buf(oneforall *lst, int nb)
 {
 	if (lst->buf_i + nb < BUFFER_SIZE)
@@ -28,7 +29,12 @@ void hex_convert(unsigned long long int nb, int base, oneforall *lst)
 
 	tmp = nb;
 	i = 0;
-
+	if ((!lst->preci || lst->non_preci == 1) && nb == 0)
+	{
+		if (lst->taille > 0)
+			ft_putbuf(lst, ' ');
+		return;
+	}
 	if (base <= 16)
 		table = "0123456789abcdef";
 	else
@@ -56,15 +62,14 @@ void hex_convert(unsigned long long int nb, int base, oneforall *lst)
 		lst->buf_i++;
 }
 
-int putunsi(oneforall *lst, va_list ap)
+int put_unsigned(oneforall *lst, va_list ap)
 {
-	long long unsigned int nb;
-
-	nb = va_arg(ap, long long unsigned int);
-	hex_convert(nb, 10, lst);
+	(void)lst;
+	(void)ap;
+	while (1)
+		printf("dwqdqw\n");
 	return (1);
 }
-
 char *uppercase(char *str)
 {
 	int i;

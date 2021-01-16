@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:06:52 by dasanter          #+#    #+#             */
-/*   Updated: 2021/01/08 15:11:32 by dasanter         ###   ########.fr       */
+/*   Updated: 2021/01/16 15:33:00 by dasanter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdarg.h>
@@ -39,6 +39,7 @@ void initlst(oneforall *lst, char *form)
 	lst->taille = 0;
 	lst->preci = -1;
 	lst->plus = 0;
+	lst->non_preci = 0;
 	lst->ret_value = 0;
 	lst->nul[0] = '(';
 	lst->nul[1] = 'n';
@@ -54,6 +55,7 @@ void resetlst(oneforall *lst)
 	lst->diese = 0;
 	lst->zero = ' ';
 	lst->moins = 0;
+	lst->non_preci = 0;
 	lst->space = 0;
 	lst->taille = 0;
 	lst->plus = 0;
@@ -114,9 +116,9 @@ int	ft_printf(char *form, ...)
 	while (lst->pos < 127)
 		p[lst->pos++] = skip;
 	p['s'] = putstr;
+	p['u'] = put_unsigned;
 	p['d'] = putint;
 	p['i'] = putint;
-	p['u'] = putuns;
 	p['c'] = char_buf;
 	p['p'] = print_po;
 	p['0'] = zero;
@@ -158,9 +160,9 @@ int main()
 //
 //	printf("le vrai %d\n", -13 + printf("le vrai : |%10d|\n", -42));
 //	printf("le mien %d\n", -13 + ft_printf("le mien : |%10d|\n", -42));
-	ft_printf("|%5.1d|\n", 0);
-	printf("|%5.1d|\n", 0);
 //	ft_printf("|%-8.5d|\n", -10);
+	printf("mon printf %d\n", ft_printf("|%-9c|\n", 'z'));
+	printf("real printf %d\n", printf("|%-9c|\n", 'z'));
 //	printf("|%-8.5d|\n", -10);
 //	printf("|%7.5d|\n", -14);
 //	printf("|%7d|\n", -14);

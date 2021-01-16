@@ -6,7 +6,7 @@
 /*   By: dasanter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 18:46:59 by dasanter          #+#    #+#             */
-/*   Updated: 2021/01/07 18:18:01 by dasanter         ###   ########.fr       */
+/*   Updated: 2021/01/16 10:32:20 by dasanter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int preci(oneforall *lst, va_list ap)
 	nb = 0;
 	i = 0;
 	lst->pos++;
+	if (lst->form[lst->pos] < '0' || lst->form[lst->pos] > '9')
+		lst->non_preci = 1;
 	while (lst->form[lst->pos + i] >= '0' && lst->form[lst->pos + i] <= '9')
 	{
 		nb = (lst->form[lst->pos + i] - 48)  + nb * puiss(i);
